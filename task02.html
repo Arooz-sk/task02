@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task02</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+ <style type="text/css">
+       div{
+        padding: 50px;
+        
+       } 
+       table ,th,td{
+        border: 2px solid;
+       }
+       
+input.ng-empty{
+    border-color: orangered;
+}
+</style>
+</head>
+<body>
+	
+
+<div ng-app="second" ng-controller="task02">
+<form>	
+	<label for="name">Name:</label>
+	<input type="text" style="input.ng-empty[border-color: orangered]" id='name' ng-module='name'>
+	<br>
+	<label for="email">Email:</label>
+	<input type="text"  id='email' ng-module='email'>
+	<br>	
+	<label for="mobile">Mobile:</label>
+	<input type="text"  id='mobile' ng-module='mobile'>
+	<br>
+	<label for="dob">DOB:</label>
+	<input type="Date"  id='dob' ng-module='dob'>
+	<br>
+	<label for="state">state:</label>
+	<select id="state">
+		<option ng-repeat="x in state">{{x}}</option>
+	</select>
+	<br>
+	<label for="city">City:</label>
+	<select id="city">
+		<option ng-repeat="y in city">{{y}}</option>
+	</select>
+	<br>
+	<label for="password">password :</label>
+	<input type="password"  id='password' ng-module='password'>
+	</form>
+	<br>
+</form>
+<button >SAVE</button>
+<br>
+<br>
+<br>
+<button ng-click="sort1('email')"> By Email </button>
+<button ng-click="sort1('name')" >By Name </button>
+<br><br>
+<input type="text" name="searchidname" ng-model='searchtext'>
+<br><br>
+<br>
+<table>
+	<tr>
+		<th>NAME</th>
+		<th>EMAIL</th>
+		<th>MOBILE</th>
+		<th>DOB</th>
+		<th>STATE</th>
+		<th>CITY</th>
+		<th>PASSWORD</th>
+	</tr>
+
+	<tr ng-repeat='x in students | orderBy : sorting | filter:search'>
+		<td>{{x.name}}</td>
+		<td>{{x.email}}</td>
+		<td>{{x.mobile}}</td>
+		<td>{{x.dob}}</td>
+		<td>{{x.state}}</td>
+		<td>{{x.city}}</td>
+		<td>{{x.password}}</td>
+	</tr>
+</table>
+<br>
+
+</div>
+<script type="text/javascript">
+	var app=angular.module('second',[]);
+    app.controller('task02',function ($scope) {
+    	$scope.name='Arooz'
+        $scope.email='arroz@gmail.com'
+        $scope.mobile='789'
+    	$scope.dob=new Date('13/02/1998')
+		$scope.state=['bihar','gujarat','maharashtra']
+        $scope.city=['mumbai','panaji','vashi']
+		$scope.students=[
+        {"name":"Arooz","email":"aplha@","mobile":"789","dob":'789','state':"mtha" , 'city':"dfgdf" ,'password':"gfhgf"},
+        {"name":"Bilal","email":"aa5","mobile":"1179","dob":'789','state':"xhsuxh" , 'city':"dfgdf" ,"password":"aer"},
+        {"name":"Shalini","email":"h454a","mobile":"997","dob":'789','state':"556ax" , 'city':"dy151fgdf" ,'password':"gfhgf"},
+        {"name":"mahesh","email":"aa8","mobile":"79","dob":'789','state':"xyaxa" , 'city':"dgdf58" ,'password':"gfhgf"},
+        {"name":"Shalini","email":"ha5","mobile":"1117","dob":'789','state':"bxh" , 'city':"55df" ,'password':"gfhgf"},
+        {"name":"amir","email":"aa","mobile":"79","dob":'789','state':"saxkaxd" , 'city':"dfg551f" ,'password':"gfhgf"},
+        {"name":"ajju","email":"hascs","mobile":"87","dob":'789','state':"s34343d" , 'city':"dfgdf" ,'password':"gfhgf"},
+        {"name":"needa","email":"aa484","mobile":"77879","dob":'789','state':"sd2ds" , 'city':"dfgdf" ,'password':"gfhgf"},
+        {"name":"uneza","email":"ha88","mobile":"7484","dob":'789','state':"sdss" , 'city':"dfgdf" ,'password':"gfhgf"},
+        {"name":"sonu","email":"aa8ss","mobile":"79848","dob":'789','state':"sdcscs" , 'city':"dfgdf" ,'password':"gfhgf"},
+        {"name":"zaid","email":"hasc","mobile":"7848","dob":'789','state':"sdcss" , 'city':"dfgdf" ,'password':"gfhgf"}]
+$scope.dob=new Date('13/02/1998')
+$scope.state=['bihar','gujarat','maharashtra'];
+        $scope.city=['mumbai','panaji','vashi'];
+        console.log($scope.students)
+        $scope.sort1=function(q){
+        	$scope.sorting=q;
+        }
+    $scope.search =function (item) {
+
+ 	return (item.name.indexOf($scope.searchtext) !=-1 || item.email.indexOf($scope.searchtext) !=-1 )
+ };
+    
+   }
+   );
+</script>
+</body>
+</html>
